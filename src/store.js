@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import ax from 'axios';
-let axios = ax.create({baseURL: "http://localhost:3000"});
+let axios = ax.create({baseURL: "https://gentle-citadel-33655.herokuapp.com"});
 
 Vue.use(Vuex);
 
