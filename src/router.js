@@ -10,15 +10,22 @@ import ProjectForm from "../components/ProjectForm.vue"
 Vue.use(VueRouter);
 
 var routes = [
-    {path: "/", components: {default: Home}},
-    {path: "/contact", components: {default: Contact}},
-    {path: "/resume", components: {default: Resume}},
-    {path: "/projects", components: {default: Projects}},
-    {path: "/projects/:project", components: {default: ProjectPage}},
-    {path: "/projectform", components: {default: ProjectForm}},
+    {path: "/", components: {default: Home}, meta: {title: "Arik"}},
+    {path: "/contact", components: {default: Contact}, meta: {title: "Contact"}},
+    {path: "/resume", components: {default: Resume}, meta: {title: "Resume"}},
+    {path: "/projects", components: {default: Projects}, meta: {title: "Projects"}},
+    {path: "/projects/:project", components: {default: ProjectPage}, meta: {title: "Projects"}},
+    {path: "/projectform", components: {default: ProjectForm}, meta: {title: "Project Updater"}},
     // {path: "", components: {default: }},
 ];
 
-export default new VueRouter({
+let router = new VueRouter({
     routes,
 })
+
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title || "Arik";
+    next();
+})
+
+export default router;
