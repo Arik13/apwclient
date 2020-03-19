@@ -21,6 +21,7 @@ var routes = [
 
 let router = new VueRouter({
     routes,
+    mode: "history"
 })
 
 router.beforeEach((to, from, next) => {
