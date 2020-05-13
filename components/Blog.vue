@@ -2,11 +2,11 @@
     <div>
         <v-row height="100%">
             <v-col
-                :cols="8"
+                :cols="12"
                 :lg="8"
                 :md="8"
-                :sm="8"
-                :xs="8"
+                :sm="12"
+                :xs="12"
             >
                 <v-card outlined>
                     <v-card-text>
