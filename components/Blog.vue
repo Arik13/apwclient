@@ -30,11 +30,11 @@
 
             </v-col>
             <v-col
-                :cols="4"
+                :cols="23"
                 :lg="4"
                 :md="4"
-                :sm="4"
-                :xs="4"
+                :sm="12"
+                :xs="12"
             >
                 <v-card outlined>
                     <v-treeview
