@@ -7,7 +7,8 @@
             <v-container >
                 <v-flex xs12 sm12 md12 lg12>
                     <v-row>
-                        <v-toolbar-title disabled>Arik Dicks</v-toolbar-title>
+                        <v-toolbar-title  v-if="$vuetify.breakpoint.name != 'xs'" disabled>Arik Dicks</v-toolbar-title>
+                        <v-toolbar-title  v-else disabled>AD</v-toolbar-title>
                         <v-spacer></v-spacer>
                         <router-link
                             v-for="navItem in navItems"
@@ -67,7 +68,7 @@ export default {
             {
                 link: "/blog",
                 text: "Blog",
-                icon: "mdi-hammer"
+                icon: "mdi-blogger"
             },
         ]
     }),
