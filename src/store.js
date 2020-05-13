@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import ax from 'axios';
 let axios = ax.create({baseURL: "https://apwserver.herokuapp.com/"});
+// let axios = ax.create({baseURL: "http://localhost:3000/"});
 
 Vue.use(Vuex);
 

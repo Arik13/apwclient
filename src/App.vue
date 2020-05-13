@@ -4,7 +4,7 @@
             app
             dark
         >
-            <v-container>
+            <v-container >
                 <v-flex xs12 sm12 md12 lg12>
                     <v-row>
                         <v-toolbar-title disabled>Arik Dicks</v-toolbar-title>
@@ -23,16 +23,18 @@
             </v-container>
         </v-app-bar>
         <v-content>
-            <v-container>
+            <!-- <v-container> -->
+                <v-card>
                 <v-flex>
-                    <v-sheet
+                    <v-card
                         elevation="12"
                         :style="'padding: 30px ' + hPad + 'px ;'"
                     >
                         <router-view />
-                    </v-sheet>
+                    </v-card>
                 </v-flex>
-            </v-container>
+                </v-card>
+            <!-- </v-container> -->
         </v-content>
     </v-app>
 </template>
@@ -60,6 +62,11 @@ export default {
             {
                 link: "/projects",
                 text: "Projects",
+                icon: "mdi-hammer"
+            },
+            {
+                link: "/blog",
+                text: "Blog",
                 icon: "mdi-hammer"
             },
         ]

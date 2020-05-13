@@ -6,6 +6,8 @@ import Projects from "../components/Projects.vue"
 import Contact from "../components/Contact.vue"
 import ProjectPage from "../components/ProjectPage.vue"
 import ProjectForm from "../components/ProjectForm.vue"
+import Blog from "../components/Blog.vue"
+import BlogForm from "../components/BlogForm.vue"
 
 Vue.use(VueRouter);
 
@@ -16,6 +18,9 @@ var routes = [
     {path: "/projects", components: {default: Projects}, meta: {title: "Projects"}},
     {path: "/projects/:project", components: {default: ProjectPage}, meta: {title: "Projects"}},
     {path: "/projectform", components: {default: ProjectForm}, meta: {title: "Project Updater"}},
+    {path: "/blog", components: {default: Blog}, meta: {title: "Blog"}},
+    {path: "/blog/:ID", components: {default: Blog}, meta: {title: "Blog"}},
+    {path: "/blogform", components: {default: BlogForm}, meta: {title: "Blog Form"}},
     // {path: "", components: {default: }},
 ];
 
