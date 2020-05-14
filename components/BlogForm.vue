@@ -154,6 +154,15 @@
                 >
                 <v-icon>mdi-redo</v-icon>
                 </v-btn>
+
+                <v-btn
+                    icon
+                    class="menubar__button"
+                    @click="showImagePrompt(commands.image)"
+                >
+                    <v-icon>mdi-image</v-icon>
+                </v-btn>
+
                 <v-spacer />
                 <v-btn @click="submitForm()">Submit</v-btn>
             </v-toolbar>
@@ -183,13 +192,14 @@ import {
     Strike,
     Underline,
     History,
+    Image,
 } from 'tiptap-extensions'
 
 export default {
     components: {
-    EditorContent,
-    EditorMenuBar,
-  },
+        EditorContent,
+        EditorMenuBar,
+    },
     data: () => ({
         name: "",
         editor: new Editor({
@@ -204,6 +214,7 @@ export default {
                 new CodeBlock(),
                 new HardBreak(),
                 new Heading({ levels: [1, 2, 3] }),
+                new Image(),
                 new HorizontalRule(),
                 new ListItem(),
                 new OrderedList(),
@@ -234,6 +245,12 @@ export default {
                     console.log("Result", result);
                 }
             });
+        },
+        showImagePrompt(command) {
+            const src = prompt('Enter the url of your image here')
+            if (src !== null) {
+                command({ src })
+            }
         },
     },
     mounted() {

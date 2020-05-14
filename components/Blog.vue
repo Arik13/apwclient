@@ -11,20 +11,6 @@
                 <v-card outlined>
                     <v-card-text>
                         <div v-html="post"></div>
-                        <!-- <article style="border: black 1px" class="film_review">
-                            <header>
-                                <h2>Lorem Ipsum</h2>
-                            </header>
-                            <section>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                            </section>
-                            <footer>
-                                <p>
-                                Posted on
-                                <time :datetime="now">{{ now }}</time>
-                                </p>
-                            </footer>
-                        </article> -->
                     </v-card-text>
                 </v-card>
 
@@ -81,6 +67,7 @@ export default {
             this.post = item.post;
         },
         openBlogPostFromID(ID) {
+            // This is the shittiest code I've ever written
             for (var key in this.items) {
                 for (var key2 in this.items[key].children) {
                     for (var key3 in this.items[key].children[key2].children) {
@@ -92,7 +79,6 @@ export default {
                     }
                 }
             }
-            // this.post = item.post;
         }
     },
     mounted() {
@@ -100,6 +86,7 @@ export default {
             method: "GET",
             route: "/api/blogposts/",
             callback: (result) => {
+                // This is the second most shittiest code I've ever written
                 let blogPosts = {};
                 for (let i = 0; i < result.length; i++) {
                     let date = new Date(result[i].date);
@@ -130,7 +117,6 @@ export default {
                 this.items = items;
                 this.open.push(this.$route.params);
                 this.openBlogPostFromID(this.$route.params.ID);
-                console.log(this.items);
             }
         });
     }
