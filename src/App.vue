@@ -3,7 +3,7 @@
         <v-app-bar
             app
         >
-            <v-container >
+            <!-- <v-container > -->
                 <v-flex xs12 sm12 md12 lg12>
                     <v-row>
                         <v-toolbar-title  v-if="$vuetify.breakpoint.name != 'xs'" disabled>{{ toolbarTitle }}</v-toolbar-title>
@@ -20,7 +20,7 @@
                         </router-link>
                     </v-row>
                 </v-flex>
-            </v-container>
+            <!-- </v-container> -->
         </v-app-bar>
         <v-content>
             <!-- <v-container> -->
