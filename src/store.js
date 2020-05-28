@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import ax from 'axios';
-let axios = ax.create({baseURL: "https://apwserver.herokuapp.com/"});
-// let axios = ax.create({baseURL: "http://localhost:3000/"});
+import * as personal from "./personal"
+let axios = ax.create({baseURL: personal.serverURL});
 
 Vue.use(Vuex);
 

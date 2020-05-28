@@ -8,16 +8,17 @@ import ProjectPage from "../components/ProjectPage.vue"
 import ProjectForm from "../components/ProjectForm.vue"
 import Blog from "../components/Blog.vue"
 import BlogForm from "../components/BlogForm.vue"
+import {homeName} from "./personal"
 
 Vue.use(VueRouter);
 
 var routes = [
-    {path: "/", components: {default: Home}, meta: {title: "Arik"}},
+    {path: "/", components: {default: Home}, meta: {title: homeName}},
     {path: "/contact", components: {default: Contact}, meta: {title: "Contact"}},
     {path: "/resume", components: {default: Resume}, meta: {title: "Resume"}},
     {path: "/projects", components: {default: Projects}, meta: {title: "Projects"}},
     {path: "/projects/:project", components: {default: ProjectPage}, meta: {title: "Projects"}},
-    {path: "/projectform", components: {default: ProjectForm}, meta: {title: "Project Updater"}},
+    {path: "/projectform", components: {default: ProjectForm}, meta: {title: "Project Form"}},
     {path: "/blog", components: {default: Blog}, meta: {title: "Blog"}},
     {path: "/blog/:ID", components: {default: Blog}, meta: {title: "Blog"}},
     {path: "/blogform", components: {default: BlogForm}, meta: {title: "Blog Form"}},
@@ -30,7 +31,7 @@ let router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title || "Arik";
+    document.title = to.meta.title || homeName;
     next();
 })
 

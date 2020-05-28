@@ -1,13 +1,12 @@
 <template>
-    <v-app style="font-family: Consolas,monaco,monospace;">
+    <v-app >
         <v-app-bar
             app
-            dark
         >
             <v-container >
                 <v-flex xs12 sm12 md12 lg12>
                     <v-row>
-                        <v-toolbar-title  v-if="$vuetify.breakpoint.name != 'xs'" disabled>Arik Dicks</v-toolbar-title>
+                        <v-toolbar-title  v-if="$vuetify.breakpoint.name != 'xs'" disabled>{{ toolbarTitle }}</v-toolbar-title>
                         <v-toolbar-title  v-else disabled>AD</v-toolbar-title>
                         <v-spacer></v-spacer>
                         <router-link
@@ -41,9 +40,11 @@
 </template>
 
 <script>
+import * as personal from "./personal";
 export default {
     name: 'App',
     data: () => ({
+        toolbarTitle: personal.fullName,
         navItems: [
             {
                 link: "/",
@@ -77,23 +78,11 @@ export default {
             return (this.$vuetify.breakpoint.name == 'xs')? 10 : 60;
         }
     },
-    methods: {
-        download() {
-            this.$store.dispatch("accessResource", {
-                method: "GET",
-                route: "/download/testImg.png",
-                responseType: "blob",
-                callback: (result) => {
-                    var file = new Blob([result], {type: "image/png"});
-                    var fileURL = window.URL.createObjectURL(file);
-                    var fileLink = document.createElement('a');
-                    fileLink.href = fileURL;
-                    fileLink.setAttribute('download', 'testImg.png');
-                    document.body.appendChild(fileLink);
-                    fileLink.click();
-                }
-            });
-        }
-    }
 };
 </script>
+
+<style>
+    * {
+        font-family: Consolas, monaco, monospace;
+    }
+</style>>
