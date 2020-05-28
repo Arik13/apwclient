@@ -31,6 +31,8 @@
             Every layer of the stack has something interesting to it. Each has it's own challenges and the associated toolkits have their own in's and out's.
             From low-level coding with C/C++ with it's challenging analytical problems involving algorithms and design patterns, to front end and its
             requirement of quickly picking up new tools and being creative, I enjoy it all.
+
+            Testing.
         </p>
     </div>
 </template>
