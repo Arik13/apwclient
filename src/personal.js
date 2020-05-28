@@ -1,6 +1,7 @@
 const homeName = "Arik";
 const headshotURL = "https://ed34ce48-663d-11ea-bc55-0242ac130003.s3-us-west-2.amazonaws.com/Headshot.jpg";
 const fullName = "Arik Dicks";
+const initials = "AD";
 const preNameBlurb = "Hello! My name is";
 const postNameBlurb = "I'm a full-stack developer from Coquitlam, BC.";
 const homeParagraphs = [
@@ -14,6 +15,7 @@ export {
     homeName,
     headshotURL,
     fullName,
+    initials,
     preNameBlurb,
     postNameBlurb,
     homeParagraphs,

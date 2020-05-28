@@ -2,12 +2,13 @@
     <v-app >
         <v-app-bar
             app
+            :style="'padding: 0px ' + hPad + 'px ;'"
         >
             <!-- <v-container > -->
                 <v-flex xs12 sm12 md12 lg12>
                     <v-row>
-                        <v-toolbar-title  v-if="$vuetify.breakpoint.name != 'xs'" disabled>{{ toolbarTitle }}</v-toolbar-title>
-                        <v-toolbar-title  v-else disabled>AD</v-toolbar-title>
+                        <v-toolbar-title v-if="$vuetify.breakpoint.name != 'xs' && $vuetify.breakpoint.name != 'sm'" disabled>{{ toolbarTitle }}</v-toolbar-title>
+                        <v-toolbar-title v-else disabled>{{ toolbarTitleAlt }}</v-toolbar-title>
                         <v-spacer></v-spacer>
                         <router-link
                             v-for="navItem in navItems"
@@ -15,7 +16,7 @@
                             :to="navItem.link"
                             style="text-decoration: none;"
                         >
-                            <v-btn v-if="$vuetify.breakpoint.name != 'xs'" text>{{navItem.text}}</v-btn>
+                            <v-btn v-if="$vuetify.breakpoint.name != 'xs' && $vuetify.breakpoint.name != 'sm'" text>{{navItem.text}}</v-btn>
                             <v-btn v-else icon><v-icon>{{navItem.icon}}</v-icon></v-btn>
                         </router-link>
                     </v-row>
@@ -45,6 +46,7 @@ export default {
     name: 'App',
     data: () => ({
         toolbarTitle: personal.fullName,
+        toolbarTitleAlt: personal.initials,
         navItems: [
             {
                 link: "/",

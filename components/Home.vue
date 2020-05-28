@@ -12,9 +12,9 @@
             <v-col>
                 <div
                 >
-                    {{ preName }}
+                    {{ preNameBlurb }}
                     <h1>{{ name }}</h1>
-                    {{ postName }}
+                    {{ postNameBlurb }}
                     <br>
                 </div>
             </v-col>
