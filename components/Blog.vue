@@ -86,7 +86,7 @@ export default {
             method: "GET",
             route: "/api/blogposts/",
             callback: (result) => {
-                // This is the second most shittiest code I've ever written
+                // I take it back this is the shittiest code I've ever written
                 let blogPosts = {};
                 for (let i = 0; i < result.length; i++) {
                     let date = new Date(result[i].date);

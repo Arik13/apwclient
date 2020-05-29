@@ -44,7 +44,6 @@ export default {
                     message: this.message
                 },
                 callback: (result) => {
-                    console.log("Result", result);
                     if (result.success) {
                         this.subject = "";
                         this.message = "";

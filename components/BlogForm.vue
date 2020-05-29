@@ -253,19 +253,6 @@ export default {
             }
         },
     },
-    mounted() {
-        // this.$store.dispatch("accessResource", {
-        //     method: "GET",
-        //     route: "/api/projects/",
-        //     callback: (result) => {
-        //         console.log("Result", result);
-        //         this.projects = result;
-        //         for (let i = 0; i < this.projects.length; i++) {
-        //             this.options.push(this.projects[i].header);
-        //         }
-        //     }
-        // });
-    },
     beforeDestroy() {
         this.editor.destroy()
     },
