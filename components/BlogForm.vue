@@ -70,83 +70,67 @@ export default {
                 class: (isActive) => {return{ 'is-active': isActive.bold()}},
                 clickHandler: (commands) => {commands.bold()},
                 icon: "mdi-format-bold",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.italic()}},
                 clickHandler: (commands) => {commands.italic()},
                 icon: "mdi-format-italic",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.strike()}},
                 clickHandler: (commands) => {commands.strike()},
                 icon: "mdi-format-strikethrough",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.underline()}},
                 clickHandler: (commands) => {commands.underline()},
                 icon: "mdi-format-underline",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.code()}},
                 clickHandler: (commands) => {commands.code()},
                 icon: "mdi-code-tags",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.paragraph()}},
                 clickHandler: (commands) => {commands.paragraph()},
                 icon: "mdi-format-paragraph",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.heading({ level: 1 })}},
                 clickHandler: (commands) => {commands.heading({ level: 1 })},
                 icon: "mdi-format-header-1",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.heading({ level: 2 })}},
                 clickHandler: (commands) => {commands.heading({ level: 2 })},
                 icon: "mdi-format-header-2",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.heading({ level: 3 })}},
                 clickHandler: (commands) => {commands.heading({ level: 3 })},
                 icon: "mdi-format-header-3",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.bullet_list()}},
                 clickHandler: (commands) => {commands.bullet_list()},
                 icon: "mdi-format-list-bulleted",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.ordered_list()}},
                 clickHandler: (commands) => {commands.ordered_list()},
                 icon: "mdi-format-list-numbered",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.blockquote()}},
                 clickHandler: (commands) => {commands.blockquote()},
                 icon: "mdi-format-quote-open",
-            },
-            {
+            },{
                 class: (isActive) => {return{ 'is-active': isActive.code_block()}},
                 clickHandler: (commands) => {commands.code_block()},
                 icon: "mdi-code-array",
-            },
-            {
+            },{
                 class: (isActive) => {return{isActive}},
                 clickHandler: (commands) => {commands.horizontal_rule()},
                 icon: "mdi-minus",
-            },
-            {
+            },{
                 class: (isActive) => {return{isActive}},
                 clickHandler: (commands) => {commands.undo()},
                 icon: "mdi-undo",
-            },
-            {
+            },{
                 class: (isActive) => {return{isActive}},
                 clickHandler: (commands) => {commands.redo()},
                 icon: "mdi-redo",
-            },
-            {
+            },{
                 class: (isActive) => {return{isActive}},
                 clickHandler: (commands) => {
                     const src = prompt('Enter the url of your image here')
