@@ -86,6 +86,7 @@ export default {
         },
     },
     mounted() {
+        console.log(Date);
         this.$store.dispatch("accessResource", {
             method: "GET",
             route: "/api/blogposts/",
@@ -102,7 +103,7 @@ export default {
                     }
 
                     // Get the current month and if it doesn't exist yet, create a branch for that month
-                    let month = "" + date.getMonth();
+                    let month = date.toLocaleString('default', { month: 'long' });
                     if (!blogPosts[year][month]) {
                         blogPosts[year][month] = {};
                     }
