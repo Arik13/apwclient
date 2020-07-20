@@ -18,151 +18,14 @@
         </v-card>
         <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
             <v-toolbar>
-                <v-btn
+                <v-btn v-for="(buttonData, i) in buttons" :key="i"
                     icon
                     class="menubar__button"
-                    :class="{ 'is-active': isActive.bold() }"
-                    @click="commands.bold"
+                    :class="buttonData.class(isActive)"
+                    @click="buttonData.clickHandler(commands)"
                 >
-                    <v-icon>mdi-format-bold</v-icon>
+                    <v-icon>{{ buttonData.icon }}</v-icon>
                 </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    :class="{ 'is-active': isActive.italic() }"
-                    @click="commands.italic"
-                >
-                    <v-icon>mdi-format-italic</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    :class="{ 'is-active': isActive.strike() }"
-                    @click="commands.strike"
-                >
-                    <v-icon>mdi-format-strikethrough</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    :class="{ 'is-active': isActive.underline() }"
-                    @click="commands.underline"
-                >
-                    <v-icon>mdi-format-underline</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    :class="{ 'is-active': isActive.code() }"
-                    @click="commands.code"
-                >
-                    <v-icon>mdi-code-tags</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    :class="{ 'is-active': isActive.paragraph() }"
-                    @click="commands.paragraph"
-                >
-                    <v-icon>mdi-format-paragraph</v-icon>
-                </v-btn>
-
-                <v-btn icon
-                class="menubar__button"
-                :class="{ 'is-active': isActive.heading({ level: 1 }) }"
-                @click="commands.heading({ level: 1 })"
-                >
-                    <v-icon>mdi-format-header-1</v-icon>
-                </v-btn>
-
-                <v-btn icon
-                class="menubar__button"
-                :class="{ 'is-active': isActive.heading({ level: 2 }) }"
-                @click="commands.heading({ level: 2 })"
-                >
-                <v-icon>mdi-format-header-2</v-icon>
-                </v-btn>
-
-                <v-btn icon
-                class="menubar__button"
-                :class="{ 'is-active': isActive.heading({ level: 3 }) }"
-                @click="commands.heading({ level: 3 })"
-                >
-                <v-icon>mdi-format-header-3</v-icon>
-                </v-btn>
-
-                <v-btn icon
-                class="menubar__button"
-                :class="{ 'is-active': isActive.bullet_list() }"
-                @click="commands.bullet_list"
-                >
-                <v-icon>mdi-format-list-bulleted</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    :class="{ 'is-active': isActive.ordered_list() }"
-                    @click="commands.ordered_list"
-                >
-                <v-icon>mdi-format-list-numbered</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    :class="{ 'is-active': isActive.blockquote() }"
-                    @click="commands.blockquote"
-                >
-                <v-icon>mdi-format-quote-open</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    :class="{ 'is-active': isActive.code_block() }"
-                    @click="commands.code_block"
-                >
-                    <v-icon>mdi-code-array</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    @click="commands.horizontal_rule"
-                >
-                    <v-icon>mdi-minus</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    @click="commands.undo"
-                >
-                <v-icon>mdi-undo</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    @click="commands.redo"
-                >
-                <v-icon>mdi-redo</v-icon>
-                </v-btn>
-
-                <v-btn
-                    icon
-                    class="menubar__button"
-                    @click="showImagePrompt(commands.image)"
-                >
-                    <v-icon>mdi-image</v-icon>
-                </v-btn>
-
                 <v-spacer />
                 <v-btn @click="submitForm()">Submit</v-btn>
             </v-toolbar>
@@ -202,6 +65,98 @@ export default {
     },
     data: () => ({
         name: "",
+        buttons: [
+            {
+                class: (isActive) => {return{ 'is-active': isActive.bold()}},
+                clickHandler: (commands) => {commands.bold()},
+                icon: "mdi-format-bold",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.italic()}},
+                clickHandler: (commands) => {commands.italic()},
+                icon: "mdi-format-italic",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.strike()}},
+                clickHandler: (commands) => {commands.strike()},
+                icon: "mdi-format-strikethrough",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.underline()}},
+                clickHandler: (commands) => {commands.underline()},
+                icon: "mdi-format-underline",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.code()}},
+                clickHandler: (commands) => {commands.code()},
+                icon: "mdi-code-tags",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.paragraph()}},
+                clickHandler: (commands) => {commands.paragraph()},
+                icon: "mdi-format-paragraph",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.heading({ level: 1 })}},
+                clickHandler: (commands) => {commands.heading({ level: 1 })},
+                icon: "mdi-format-header-1",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.heading({ level: 2 })}},
+                clickHandler: (commands) => {commands.heading({ level: 2 })},
+                icon: "mdi-format-header-2",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.heading({ level: 3 })}},
+                clickHandler: (commands) => {commands.heading({ level: 3 })},
+                icon: "mdi-format-header-3",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.bullet_list()}},
+                clickHandler: (commands) => {commands.bullet_list()},
+                icon: "mdi-format-list-bulleted",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.ordered_list()}},
+                clickHandler: (commands) => {commands.ordered_list()},
+                icon: "mdi-format-list-numbered",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.blockquote()}},
+                clickHandler: (commands) => {commands.blockquote()},
+                icon: "mdi-format-quote-open",
+            },
+            {
+                class: (isActive) => {return{ 'is-active': isActive.code_block()}},
+                clickHandler: (commands) => {commands.code_block()},
+                icon: "mdi-code-array",
+            },
+            {
+                class: (isActive) => {return{isActive}},
+                clickHandler: (commands) => {commands.horizontal_rule()},
+                icon: "mdi-minus",
+            },
+            {
+                class: (isActive) => {return{isActive}},
+                clickHandler: (commands) => {commands.undo()},
+                icon: "mdi-undo",
+            },
+            {
+                class: (isActive) => {return{isActive}},
+                clickHandler: (commands) => {commands.redo()},
+                icon: "mdi-redo",
+            },
+            {
+                class: (isActive) => {return{isActive}},
+                clickHandler: (commands) => {
+                    const src = prompt('Enter the url of your image here')
+                    if (src !== null) {
+                        commands.image({ src })
+                    }
+                },
+                icon: "mdi-image",
+            },
+        ],
         editor: new Editor({
             onInit: ({ state, view }) => {
                 state;
@@ -245,12 +200,6 @@ export default {
                     console.log("Result", result);
                 }
             });
-        },
-        showImagePrompt(command) {
-            const src = prompt('Enter the url of your image here')
-            if (src !== null) {
-                command({ src })
-            }
         },
     },
     beforeDestroy() {
