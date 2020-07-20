@@ -28,16 +28,18 @@
                         :items="items"
                         hoverable
                         activatable
+                        item-key="id"
+                        dense
                         open-on-click
-                        item-key="name"
+                        @update:active="openBlogPostFromID"
                     >
                         <template v-slot:prepend="{ item, open }">
                             <v-icon v-if="!item.post">
                                 {{ open ? 'mdi-folder-open' : 'mdi-folder' }}
                             </v-icon>
                         </template>
-                        <template slot="label" slot-scope="{ item }">
-                            <div v-if="item.post" @click="openBlogPost(item)">
+                        <template slot="label" slot-scope="{ item }" >
+                            <div v-if="item.post">
                                 {{ item.name }}
                             </div>
                             <div v-else >
@@ -59,8 +61,8 @@
 export default {
     data: () => ({
         post: "",
-        open: ["2020", "4"],
-        items: []
+        open: [],
+        items: [],
     }),
     methods: {
         openBlogPost(item) {
@@ -72,14 +74,16 @@ export default {
                 for (var key2 in this.items[key].children) {
                     for (var key3 in this.items[key].children[key2].children) {
                         var item = this.items[key].children[key2].children[key3];
-                        if (item._id == ID) {
+                        if (item.id == ID) {
                             this.openBlogPost(item);
-                            this.open.push(item.id);
+                            this.open.push(this.items[key].id);
+                            this.open.push(this.items[key].children[key2].id);
+                            return;
                         }
                     }
                 }
             }
-        }
+        },
     },
     mounted() {
         this.$store.dispatch("accessResource", {
@@ -90,32 +94,55 @@ export default {
                 let blogPosts = {};
                 for (let i = 0; i < result.length; i++) {
                     let date = new Date(result[i].date);
+
+                    // Get current year and if necessary add a branch for that year to the blog posts
                     let year = "" + date.getFullYear();
                     if (!blogPosts[year]) {
                         blogPosts[year] = {}
                     }
+
+                    // Get the current month and if it doesn't exist yet, create a branch for that month
                     let month = "" + date.getMonth();
                     if (!blogPosts[year][month]) {
                         blogPosts[year][month] = {};
                     }
-                    blogPosts[year][month][result[i].name] = {_id: result[i]._id, name: result[i].name, post: result[i].body, date: date};
+                    // Attach the blogpost leaf to this branch
+                    blogPosts[year][month][result[i].name] = {
+                        _id: result[i]._id,
+                        name: result[i].name,
+                        post: result[i].body,
+                        date: date
+                    };
                 }
                 let items = [];
                 let i = 0;
+
+                // Add each year in sequence
                 for (let year in blogPosts) {
+
+                    // Create the next year node
                     items.push({id: i++, name: year, children: []});
+
+                    // Store year node in var for readability
                     let yearNode = items[items.length - 1];
+
+                    // Add each month to the current year
                     for (let month in blogPosts[year]) {
+
+                        // Create the next month node
                         yearNode.children.push({id: i++, name: month, children: []});
-                        let monthNode = yearNode.children[yearNode.children.length -1]
+
+                        // Store month node in var for readability
+                        let monthNode = yearNode.children[yearNode.children.length -1];
+
+                        // Add each post to the current month
                         for(let post in blogPosts[year][month]) {
                             let postNode = blogPosts[year][month][post];
-                            monthNode.children.push({_id: postNode._id, id: i++, name: postNode.name, post: postNode.post});
+                            monthNode.children.push({id: postNode._id, name: postNode.name, post: postNode.post});
                         }
                     }
                 }
                 this.items = items;
-                this.open.push(this.$route.params);
                 this.openBlogPostFromID(this.$route.params.ID);
             }
         });
