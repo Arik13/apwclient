@@ -37,6 +37,9 @@
                             <v-icon v-if="!item.post">
                                 {{ open ? 'mdi-folder-open' : 'mdi-folder' }}
                             </v-icon>
+                            <template v-else>
+                                {{ item.day }} -
+                            </template>
                         </template>
                         <template slot="label" slot-scope="{ item }" >
                             <div v-if="item.post">
@@ -68,7 +71,7 @@ export default {
         openBlogPost(item) {
             this.post = item.post;
         },
-        openBlogPostFromID(ID) {
+        openBlogPostFromID(ID, initial) {
             // This is the shittiest code I've ever written
             for (var key in this.items) {
                 for (var key2 in this.items[key].children) {
@@ -76,8 +79,10 @@ export default {
                         var item = this.items[key].children[key2].children[key3];
                         if (item.id == ID) {
                             this.openBlogPost(item);
-                            this.open.push(this.items[key].id);
-                            this.open.push(this.items[key].children[key2].id);
+                            if (initial) {
+                                this.open.push(this.items[key].id);
+                                this.open.push(this.items[key].children[key2].id);
+                            }
                             return;
                         }
                     }
@@ -86,7 +91,6 @@ export default {
         },
     },
     mounted() {
-        console.log(Date);
         this.$store.dispatch("accessResource", {
             method: "GET",
             route: "/api/blogposts/",
@@ -108,11 +112,13 @@ export default {
                         blogPosts[year][month] = {};
                     }
                     // Attach the blogpost leaf to this branch
+
                     blogPosts[year][month][result[i].name] = {
                         _id: result[i]._id,
                         name: result[i].name,
                         post: result[i].body,
-                        date: date
+                        date: date,
+                        day: date.getDate(),
                     };
                 }
                 let items = [];
@@ -139,12 +145,12 @@ export default {
                         // Add each post to the current month
                         for(let post in blogPosts[year][month]) {
                             let postNode = blogPosts[year][month][post];
-                            monthNode.children.push({id: postNode._id, name: postNode.name, post: postNode.post});
+                            monthNode.children.push({id: postNode._id, name: postNode.name, post: postNode.post, day: postNode.day});
                         }
                     }
                 }
                 this.items = items;
-                this.openBlogPostFromID(this.$route.params.ID);
+                this.openBlogPostFromID(this.$route.params.ID, true);
             }
         });
     }
